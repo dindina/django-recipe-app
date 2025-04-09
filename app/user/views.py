@@ -1,9 +1,9 @@
 """
-    view for the user API
+view for the user API
 
 """
 
-from rest_framework import generics, authentication , permissions
+from rest_framework import generics, authentication, permissions
 
 from rest_framework.authtoken.views import ObtainAuthToken
 
@@ -18,10 +18,12 @@ class CreateUserView(generics.CreateAPIView):
 
     serializer_class = UserSerializer
 
+
 class CreateTokenView(ObtainAuthToken):
 
     serializer_class = AuthTokenSerializer
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
 
 class ManagerUserView(generics.RetrieveUpdateAPIView):
 
@@ -30,6 +32,5 @@ class ManagerUserView(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
-        """ Retrive the authenrcated user"""
+        """Retrive the authenrcated user"""
         return self.request.user
-
